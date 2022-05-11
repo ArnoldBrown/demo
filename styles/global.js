@@ -266,7 +266,7 @@ export const global = StyleSheet.create({
     height: 45,
     borderRadius: 4,
     paddingHorizontal: 9,
-
+    color:'#000',
     justifyContent: 'center',
     borderColor: '#b6b9bd',
     width: '100%',

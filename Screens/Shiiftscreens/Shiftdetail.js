@@ -258,12 +258,12 @@ drawerData.total_paid_out}</Text>
 
           <View style={global.commonFlexrow_bt}>
             <TouchableOpacity
-              // onPress={() =>
-              //   navigation.navigate('Shiftpaid', {
-              //     Title: 'Paid In',
-              //     flag: '1',
-              //   })
-              // }
+              onPress={() =>
+                navigation.navigate('Shiftpaid', {
+                  Title: 'Paid In',
+                  flag: '1',
+                })
+              }
               style={[
                 global.commonTwocol,
                 global.commonButton,
@@ -273,12 +273,12 @@ drawerData.total_paid_out}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              // onPress={() =>
-              //   navigation.navigate('Shiftpaid', {
-              //     Title: 'Paid Out ',
-              //     flag: '2',
-              //   })
-              // }
+              onPress={() =>
+                navigation.navigate('Shiftpaid', {
+                  Title: 'Paid Out ',
+                  flag: '2',
+                })
+              }
               style={[
                 global.commonTwocol,
                 global.commonButton,

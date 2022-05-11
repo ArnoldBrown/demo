@@ -370,6 +370,7 @@ export default function AddOptionfield({navigation, onClosestep6, route}) {
                   onPress={() => [
                     FastGxsxlob(e.products_options_id),
                     setoptionName(e.options_name),
+                    refRBSheet.current.close()
                   ]}
                   style={{padding: 11}}>
                   <Text style={[global.commonTextH1, {textAlign: 'center'}]}>
@@ -389,6 +390,7 @@ export default function AddOptionfield({navigation, onClosestep6, route}) {
                   onPress={() => [
                     FastGxsxlobss(e.products_options_values_id),
                     setoptionValue(e.options_values_name),
+                    refRBSheet.current.close()
                   ]}
                   style={{padding: 11}}>
                   <Text style={[global.commonTextH1, {textAlign: 'center'}]}>

@@ -439,6 +439,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                     placeholder="FirstName *"
                     style={[global.input]}
                     onChangeText={setfirstName}
+                    placeholderTextColor="#D1D1D1"
                     value={firstName}
                   />
                 </View>
@@ -448,6 +449,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                     style={[global.input]}
                     placeholder="LastName *"
                     onChangeText={setLastname}
+                    placeholderTextColor="#D1D1D1"
                     value={lastName}
                   />
                 </View>
@@ -459,6 +461,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                     style={[global.input]}
                     placeholder="Email *"
                     onChangeText={setEmail}
+                    placeholderTextColor="#D1D1D1"
                     value={email}
                   />
                 </View>
@@ -469,6 +472,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                     placeholder="Password *"
                     secureTextEntry={true}
                     onChangeText={setPassword}
+                    placeholderTextColor="#D1D1D1"
                     value={password}
                   />
                 </View>
@@ -478,7 +482,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                 style={[global.commonFlexrow_ct, global.formverticalSpacing]}>
                 <View
                   style={{
-                    flex: 0.1,
+                    flex: 0.2,
                     backgroundColor: '#fff',
                     height: 45,
                     justifyContent: 'center',
@@ -502,7 +506,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                   style={[
                     global.inputBox,
                     {
-                      flex: 0.9,
+                      flex: 0.8,
                       borderTopLeftRadius: 0,
                       borderBottomLeftRadius: 0,
                     },
@@ -512,6 +516,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                     placeholder="Phone Number *"
                     keyboardType="number-pad"
                     onChangeText={setPhonenumber}
+                    placeholderTextColor="#D1D1D1"
                     value={phoneNumber}
                   />
                 </View>
@@ -558,6 +563,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                     placeholder="Address *"
                     multiline={true}
                     onChangeText={setAddress}
+                    placeholderTextColor="#D1D1D1"
                     value={address}
                   />
                 </View>
@@ -637,6 +643,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                     style={[global.input]}
                     placeholder="City *"
                     onChangeText={setCity}
+                    placeholderTextColor="#D1D1D1"
                     value={city}
                   />
                 </View>
@@ -646,6 +653,7 @@ export default function Addproduct({navigation, onClosecustomeradd}) {
                     style={[global.input]}
                     placeholder="Postal Code * "
                     onChangeText={setPostalcode}
+                    placeholderTextColor="#D1D1D1"
                     value={postalCode}
                     keyboardType="number-pad"
                   />

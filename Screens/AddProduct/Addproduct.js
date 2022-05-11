@@ -235,7 +235,7 @@ export default function Addproduct({
     });
 
     return (
-      <View style={{ marginTop: 12, backgroundColor: '#000' }}>
+      <View style={{ marginTop: 12}}>
         <TouchableOpacity
           onPress={() => [
             ongetCatid(comment.categories_id, comment.categories_name),
