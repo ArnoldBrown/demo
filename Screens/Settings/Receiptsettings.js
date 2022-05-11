@@ -23,9 +23,24 @@ export default function Receiptsettings({
 
   previewModel,
 }) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [isEnabledLogo, setIsEnabledLogo] = useState(false);
+  const toggleSwitchLogo = () => setIsEnabledLogo(previousState => !previousState);
+
+  const [isEnabledQueue, setIsEnabledQueue] = useState(false);
+  const toggleSwitchQueue = () => setIsEnabledQueue(previousState => !previousState);
+
+  const [isEnabledBarcode, setIsEnabledBarcode] = useState(false);
+  const toggleSwitchBarcode = () => setIsEnabledBarcode(previousState => !previousState);
+
+  const [isEnabledPaf, setIsEnabledPaf] = useState(false);
+  const toggleSwitchPaf = () => setIsEnabledPaf(previousState => !previousState);
+
+  const [isEnabledPoaf, setIsEnabledPoaf] = useState(false);
+  const toggleSwitchPoaf = () => setIsEnabledPoaf(previousState => !previousState);
+
+
   const [text, onChangeText] = useState('');
+  const [textFooter2, onChangeTextFooter2] = useState('');
 
   const findDevicetype = DeviceType();
 
@@ -70,10 +85,10 @@ export default function Receiptsettings({
 
                   <Switch
                     trackColor={{false: '#767577', true: '#81b0ff'}}
-                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                    thumbColor={isEnabledLogo ? '#f5dd4b' : '#f4f3f4'}
                     ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
+                    onValueChange={toggleSwitchLogo}
+                    value={isEnabledLogo}
                   />
                 </View>
 
@@ -82,10 +97,10 @@ export default function Receiptsettings({
 
                   <Switch
                     trackColor={{false: '#767577', true: '#81b0ff'}}
-                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                    thumbColor={isEnabledQueue ? '#f5dd4b' : '#f4f3f4'}
                     ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
+                    onValueChange={toggleSwitchQueue}
+                    value={isEnabledQueue}
                   />
                 </View>
 
@@ -133,10 +148,10 @@ export default function Receiptsettings({
 
                   <Switch
                     trackColor={{false: '#767577', true: '#81b0ff'}}
-                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                    thumbColor={isEnabledBarcode ? '#f5dd4b' : '#f4f3f4'}
                     ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
+                    onValueChange={toggleSwitchBarcode}
+                    value={isEnabledBarcode}
                   />
                 </View>
 
@@ -145,10 +160,10 @@ export default function Receiptsettings({
 
                   <Switch
                     trackColor={{false: '#767577', true: '#81b0ff'}}
-                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                    thumbColor={isEnabledPaf ? '#f5dd4b' : '#f4f3f4'}
                     ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
+                    onValueChange={toggleSwitchPaf}
+                    value={isEnabledPaf}
                   />
                 </View>
 
@@ -159,10 +174,10 @@ export default function Receiptsettings({
 
                   <Switch
                     trackColor={{false: '#767577', true: '#81b0ff'}}
-                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                    thumbColor={isEnabledPoaf ? '#f5dd4b' : '#f4f3f4'}
                     ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
+                    onValueChange={toggleSwitchPoaf}
+                    value={isEnabledPoaf}
                   />
                 </View>
               </View>
@@ -197,9 +212,9 @@ export default function Receiptsettings({
                   <View style={[global.inputBox, {width: '70%', height: 44}]}>
                     <TextInput
                       style={[global.input, {textAlign: 'right'}]}
-                      onChangeText={onChangeText}
+                      onChangeText={onChangeTextFooter2}
                       placeholderTextColor="#D1D1D1"
-                      value={text}
+                      value={textFooter2}
                     />
                   </View>
                 </View>

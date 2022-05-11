@@ -78,13 +78,17 @@ export default function InventoryMain({navigation, route}) {
 
   // =======  Redux states & functions  ========///
 
+  
+  const [text, onChangeText] = useState('');
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [viewCat, setviewCat] = useState([]);
+
   const [viewCatid, setviewCatid] = useState('');
   const [catName, setcatName] = useState('');
 
   const [isLoader, setLoader] = useState(false);
 
-  const [text, onChangeText] = useState('');
+  
   const [modalVisible, setModalVisible] = useState(false);
   const [editModel, seteditModel] = useState(false);
   const [editProductmodel, seteditProductmodel] = useState(false);
@@ -158,6 +162,7 @@ export default function InventoryMain({navigation, route}) {
         setLoader(false);
         if (data.success === '1') {
           setviewCat(data.data);
+          setFilteredDataSource(data.data)
           setviewCatid(data.data[0].categories_id);
           setcatName(data.data[0].categories_name);
 
@@ -167,12 +172,13 @@ export default function InventoryMain({navigation, route}) {
                   languageId,
                   data.data[0].categories_id,
                   currencyCode,
-                  groceryName,
+                  groceryName,  
                 ),
               )
             : null;
         } else {
           setviewCat([]);
+          setFullData([]);
         }
       })
 
@@ -190,6 +196,32 @@ export default function InventoryMain({navigation, route}) {
       unsubscribe;
     };
   }, []);
+
+  /*SEARCH*/
+  const searchFilterFunction = (text) => {
+    // Check if searched text is not blank
+    if (text) {
+      
+      // Inserted text is not blank
+      // Filter the masterDataSource
+      // Update FilteredDataSource
+      const newData = viewCat.filter(
+        function (item) {
+          const itemData = item.categories_name
+            ? item.categories_name.toUpperCase()
+            : ''.toUpperCase();
+          const textData = text.toUpperCase();
+          return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      onChangeText(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      setFilteredDataSource(viewCat);
+      onChangeText(text);
+    }
+  };
 
   const onDeleteProduct = async id => {
     if (roleList.products_delete !== 0) {
@@ -627,10 +659,11 @@ export default function InventoryMain({navigation, route}) {
                 />
                 <TextInput
                   style={[global.input, {paddingHorizontal: 4}]}
-                  onChangeText={onChangeText}
+                 // onChangeText={onChangeText}
+                  onChangeText={(text) => searchFilterFunction(text)}
                   value={text}
                   placeholder="Search"
-                  placeholderTextColor={'#6E7172'}
+                  placeholderTextColor={'#6E7172'}        
                 />
               </View>
             </View>
@@ -647,7 +680,7 @@ export default function InventoryMain({navigation, route}) {
             </View> */}
 
             <ScrollView showsVerticalScrollIndicator={false}>
-              {viewCat.map(e => {
+              {filteredDataSource.map(e => {
                 return (
                   <View>
                     <Loopcategory key={e.id} comment={e} />

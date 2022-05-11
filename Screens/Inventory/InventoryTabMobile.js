@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { Text, View, StyleSheet, Image } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import InventoryMain from './InventoryMain';
 import StockIn from './StockIn';
@@ -10,7 +10,7 @@ import CheckStock from './CheckStock';
 
 const Tab = createBottomTabNavigator();
 
-export default function InventoryTabMobile({navigation, route}) {
+export default function InventoryTabMobile({ navigation, route }) {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -24,8 +24,8 @@ export default function InventoryTabMobile({navigation, route}) {
         name="Stock Movement"
         component={InventoryMain}
         options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Image
                 source={require('../../Images/google-docs.png')}
                 resizeMode="contain"
@@ -44,8 +44,8 @@ export default function InventoryTabMobile({navigation, route}) {
         name="StockIn"
         component={StockIn}
         options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Image
                 source={require('../../Images/ready-stockccc.png')}
                 resizeMode="contain"
@@ -64,8 +64,8 @@ export default function InventoryTabMobile({navigation, route}) {
         name="StockOut"
         component={StockOut}
         options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Image
                 source={require('../../Images/ready-stockccpng.png')}
                 resizeMode="contain"
@@ -84,8 +84,8 @@ export default function InventoryTabMobile({navigation, route}) {
         name="AdjustStock"
         component={AdjustStock}
         options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Image
                 source={require('../../Images/document-adjustment.ccpng.png')}
                 resizeMode="contain"
@@ -104,8 +104,8 @@ export default function InventoryTabMobile({navigation, route}) {
         name="CheckStock"
         component={CheckStock}
         options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Image
                 source={require('../../Images/add-filecc.png')}
                 resizeMode="contain"
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5,
   },
-  handsettabno:{
-      fontSize:11
+  handsettabno: {
+    fontSize: 11
   }
 });

@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, Modal, Dimensions} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Modal, Dimensions } from 'react-native';
 import Home from './Screens/Home/Home';
 import Addproduct from './Screens/AddProduct/Addproduct';
 import Otherpackage from './Screens/AddProduct/Otherpackage';
 import Assignchoice from './Screens/AddProduct/Assignchoice';
-import {Drawercontent} from './Screens/Customsidedrawer/Customdrawer';
+import { Drawercontent } from './Screens/Customsidedrawer/Customdrawer';
 import Selectedoption from './Screens/AddProduct/Selectedoption';
 import CreateOptiongroup from './Screens/AddProduct/CreateOptiongroup';
 import Selectproducts from './Screens/AddProduct/Selectproducts';
@@ -65,7 +65,7 @@ import {
   useTheme,
 } from '@react-navigation/native';
 
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Orientation from './Screens/Orientation/Orientation';
 
@@ -113,9 +113,9 @@ import Preview from './Screens/Settings/Preview';
 
 import Editcategory from './Screens/Settings/Editcategory';
 
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Test from './Screens/Test';
 import AddoptionField from './Screens/AddProduct/Addoptionfield';
@@ -139,7 +139,7 @@ import Currency from './Screens/Settings/Currency';
 
 import Purchasedescriptions from './Screens/AddCustomer.js/Purchasedescriptions';
 
-import {global} from './styles/global';
+import { global } from './styles/global';
 
 import Mock from './Screens/Home/Mock';
 
@@ -164,6 +164,7 @@ import StockIn from './Screens/Inventory/StockIn';
 import StockOut from './Screens/Inventory/StockOut';
 import AdjustStock from './Screens/Inventory/AdjustStock';
 import CheckStock from './Screens/Inventory/CheckStock';
+import InventoryTabMobile from './Screens/Inventory/InventoryTabMobile';
 
 
 
@@ -175,13 +176,13 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   const getToken = useSelector(state => state.loginReducer);
 
-  const {status, casherId} = getToken;
+  const { status, casherId } = getToken;
 
   const DrawerLists = () => {
     return (
       <Drawer.Navigator
         initialRouteName="Home"
-        drawerStyle={{width: 150}}
+        drawerStyle={{ width: 150 }}
         drawerType="slide"
         drawerContent={props => <Drawercontent {...props} />}>
         {/* <Drawer.Screen name="Mock" component={Mock} /> */}
@@ -220,11 +221,11 @@ export default function App() {
   }, []);
 
   return (
-    <View style={{flex: 1, flexDirection: 'column'}}>
+    <View style={{ flex: 1, flexDirection: 'column' }}>
       {(global.Dimensionwidth < 468 &&
         _deviceOrientation.isPortrait === true) ||
-      (global.Dimensionwidth > 468 &&
-        _deviceOrientation.isPortrait === false) ? (
+        (global.Dimensionwidth > 468 &&
+          _deviceOrientation.isPortrait === false) ? (
         <NavigationContainer>
           {status === null ? (
             <Auth />
@@ -454,6 +455,10 @@ export default function App() {
               <Stack.Screen
                 name="CheckStock"
                 component={CheckStock}></Stack.Screen>
+
+              <Stack.Screen
+                name="InventoryTabMobile"
+                component={InventoryTabMobile}></Stack.Screen>
 
 
 

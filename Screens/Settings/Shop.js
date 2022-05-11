@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -13,11 +13,11 @@ import {
   Switch,
   Alert,
 } from 'react-native';
-import {global} from '../../styles/global';
+import { global } from '../../styles/global';
 import DeviceType from '../Orientation/DeviceType';
-import {API_Links} from '../Api/Api';
+import { API_Links } from '../Api/Api';
 import uuid from 'react-native-uuid';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Customloader from '../Customloader';
 import AuthId from '../AuthId.style';
@@ -26,7 +26,7 @@ const date = new Date();
 const DeviceIp = '192.168.1.' + Math.floor(Math.random() * 99) + 1; // default
 const DeviceId = uuid.v4();
 
-export default function Shop({navigation}) {
+export default function Shop({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
 
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -46,22 +46,30 @@ export default function Shop({navigation}) {
   const [visible, setVisible] = useState(false);
   const [loader, setLoader] = useState(false);
 
-  const [text, onChangeText] = useState('');
+  const [textTaxId, onChangeTextTaxId] = useState('');
+  const [textPosId, onChangeTextPosId] = useState('');
+  const [textBranchName, onChangeTextBranchName] = useState('');
+  const [textTextPos, onChangeTextPos] = useState('');
+  const [textOpenTime, onChangeTextOpenTime] = useState('');
+  const [textCloseTime, onChangeTextCloseTime] = useState('');
+  const [textTax, onChangeTextTax] = useState('');
+  const [textServiceCharge, onChangeTextServiceCharge] = useState('');
+  const [textAddr2, onChangeTextAddr2] = useState('');
 
   const [id, setId] = useState(1);
 
   const getToken = useSelector(state => state.loginReducer);
 
-  const {casherId} = getToken;
+  const { casherId } = getToken;
 
   const shopVal = useSelector(state => state.shopnameReducer);
 
-  const {groceryName} = shopVal;
+  const { groceryName } = shopVal;
 
   const types = [
-    {id: 1, name: 'General'},
-    {id: 2, name: 'Resturant'},
-    {id: 3, name: 'Hostel'},
+    { id: 1, name: 'General' },
+    { id: 2, name: 'Restaurant' },
+    { id: 3, name: 'Hostel' },
   ];
 
   useEffect(() => {
@@ -71,11 +79,11 @@ export default function Shop({navigation}) {
       groceryName === ''
         ? API_Links.BASE_URL + API_Links.VIEW_SHOP_SETTINGS
         : API_Links.SHOP_URL +
-            groceryName +
-            '/' +
-            'api' +
-            '/' +
-            API_Links.VIEW_SHOP_SETTINGS,
+        groceryName +
+        '/' +
+        'api' +
+        '/' +
+        API_Links.VIEW_SHOP_SETTINGS,
       {
         method: 'POST',
         headers: {
@@ -122,7 +130,7 @@ export default function Shop({navigation}) {
       })
       .catch(e => console.log(e));
 
-    return () => {};
+    return () => { };
   }, []);
 
   const onSave = () => {
@@ -156,7 +164,7 @@ export default function Shop({navigation}) {
         setLoader(false);
 
         Alert.alert(e.message, '', [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
         ]);
       })
       .catch(e => console.log(e));
@@ -170,7 +178,7 @@ export default function Shop({navigation}) {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image
               source={require('../../Images/left-arrow.png')}
-              style={{width: 20, height: 20}}
+              style={{ width: 20, height: 20 }}
             />
           </TouchableOpacity>
 
@@ -184,8 +192,8 @@ export default function Shop({navigation}) {
 
       <View style={global.commonLightbg}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{flex: 1}}>
-            <View style={[global.commonWhitebg, {paddingVertical: 0}]}>
+          <View style={{ flex: 1 }}>
+            <View style={[global.commonWhitebg, { paddingVertical: 0 }]}>
               <View style={[global.commonFlexrow_ct, global.flexLine]}>
                 <Text style={global.commonTextblueH1}>Logo</Text>
 
@@ -205,10 +213,10 @@ export default function Shop({navigation}) {
                       overflow: 'hidden',
                     },
                   ]}>
-                  <View style={{width: 100, height: 100}}>
+                  <View style={{ width: 100, height: 100 }}>
                     <Image
-                      source={{uri: API_Links.URL + logo}}
-                      style={{width: '100%', height: '100%'}}
+                      source={{ uri: API_Links.URL + logo }}
+                      style={{ width: '100%', height: '100%' }}
                       resizeMode="contain"
                     />
                   </View>
@@ -236,7 +244,7 @@ export default function Shop({navigation}) {
                   <TextInput
                     style={[
                       global.input,
-                      {width: '100%', textAlign: 'right', height: 45},
+                      { width: '100%', textAlign: 'right', height: 45 },
                     ]}
                     onChangeText={setShopname}
                     placeholder="Name"
@@ -254,9 +262,9 @@ export default function Shop({navigation}) {
                     {
                       borderRadius: 5,
                       backgroundColor: '#E7E7E7',
-                      paddingHorizontal: 5,
+                      paddingHorizontal: 2,
                       borderWidth: 0,
-                      paddingVertical: 5,
+                      paddingVertical: 2,
                       width:
                         global.Dimensionwidth > 468
                           ? global.Dimensionwidth / 3.1
@@ -270,37 +278,47 @@ export default function Shop({navigation}) {
                           style={
                             e.id === id
                               ? {
-                                  backgroundColor: '#fff',
-                                  height: 30,
-                                  justifyContent: 'center',
-                                  alignItems: 'center',
-                                  borderRadius: 4,
-                                  width:
-                                    global.Dimensionwidth > 468
-                                      ? global.Dimensionwidth / 9
-                                      : global.Dimensionwidth / 5.3,
-                                  shadowColor: '#000',
-                                  shadowOffset: {
-                                    width: 0,
-                                    height: 1,
-                                  },
-                                  shadowOpacity: 0.2,
-                                  shadowRadius: 1.41,
-                                  elevation: 2,
-                                }
+                                backgroundColor: '#fff',
+                                height: 35,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: 4,
+                                width:
+                                  global.Dimensionwidth > 468
+                                    ? global.Dimensionwidth / 9
+                                    : global.Dimensionwidth / 5.3,
+                                shadowColor: '#000',
+                                shadowOffset: {
+                                  width: 0,
+                                  height: 1,
+                                },
+                                shadowOpacity: 0.2,
+                                shadowRadius: 1.41,
+                                elevation: 2,
+                              }
                               : {
-                                  height: 30,
-                                  justifyContent: 'center',
-                                  alignItems: 'center',
-                                  borderRadius: 11,
-                                  width:
-                                    global.Dimensionwidth > 468
-                                      ? global.Dimensionwidth / 9
-                                      : global.Dimensionwidth / 5.3,
-                                }
+                                backgroundColor: '#f5f5f5',
+                                height: 35,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: 4,
+                                marginLeft: 1,
+                                marginRight: 1,
+                                width:
+                                  global.Dimensionwidth > 468
+                                    ? global.Dimensionwidth / 9
+                                    : global.Dimensionwidth / 5.3,
+                              }
                           }
                           onPress={() => setId(e.id)}>
-                          <Text style={global.commonTextblack}>{e.name}</Text>
+
+                          <Text style={
+                            e.id === id
+                              ? global.commonTextblackbBold
+                              : global.commonTextblack
+                          }>{e.name}</Text>
+
+                          {/* <Text style={global.commonTextblack}>{e.name}</Text> */}
                         </TouchableOpacity>
                       );
                     })}
@@ -339,11 +357,11 @@ export default function Shop({navigation}) {
                   <TextInput
                     style={[
                       global.input,
-                      {width: '100%', height: 45, textAlign: 'right'},
+                      { width: '100%', height: 45, textAlign: 'right' },
                     ]}
-                    onChangeText={onChangeText}
+                    onChangeText={onChangeTextTaxId}
                     placeholderTextColor="#D1D1D1"
-                    value={text}
+                    value={textTaxId}
                   />
                 </View>
               </View>
@@ -369,11 +387,11 @@ export default function Shop({navigation}) {
                   <TextInput
                     style={[
                       global.input,
-                      {width: '100%', textAlign: 'right', height: 45},
+                      { width: '100%', textAlign: 'right', height: 45 },
                     ]}
-                    onChangeText={onChangeText}
+                    onChangeText={onChangeTextPosId}
                     placeholderTextColor="#D1D1D1"
-                    value={text}
+                    value={textPosId}
                   />
                 </View>
               </View>
@@ -382,23 +400,23 @@ export default function Shop({navigation}) {
                 style={[
                   findDevicetype.isTab === 'Tablet'
                     ? global.commonFlexrow_bt
-                    : {flexDirection: 'column'},
+                    : { flexDirection: 'column' },
                   global.flexLine,
                 ]}>
                 <View
                   style={[
                     findDevicetype.isTab === 'Tablet'
                       ? global.commonTwocol
-                      : {width: '100%'},
+                      : { width: '100%' },
                     global.flexRowsec,
-                    {marginTop: findDevicetype.isTab === 'Tablet' ? null : 10},
+                    { marginTop: findDevicetype.isTab === 'Tablet' ? null : 10 },
                   ]}>
                   <View
                     style={[
                       // width: '60%'
                       findDevicetype.isTab === 'Tablet'
-                        ? {width: '60%'}
-                        : {width: '36%'},
+                        ? { width: '60%' }
+                        : { width: '36%' },
                     ]}>
                     <Text style={global.commonTextblueH1}>Branch name</Text>
                   </View>
@@ -408,16 +426,16 @@ export default function Shop({navigation}) {
                       global.inputBox,
                       findDevicetype.isTab === 'Tablet'
                         ? {
-                            width: '40%',
-                            flexDirection: 'row',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: 35,
-                          }
+                          width: '40%',
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          height: 35,
+                        }
                         : {
-                            width: '64%',
-                            height: 35,
-                          },
+                          width: '64%',
+                          height: 35,
+                        },
 
                       // {
                       //   width: '40%',
@@ -431,11 +449,11 @@ export default function Shop({navigation}) {
                     <TextInput
                       style={[
                         global.input,
-                        {width: '100%', textAlign: 'right', height: 45},
+                        { width: '100%', textAlign: 'right', height: 45 },
                       ]}
-                      onChangeText={onChangeText}
+                      onChangeText={onChangeTextBranchName}
                       placeholderTextColor="#D1D1D1"
-                      value={text}
+                      value={textBranchName}
                     />
                   </View>
                 </View>
@@ -443,16 +461,16 @@ export default function Shop({navigation}) {
                   style={[
                     findDevicetype.isTab === 'Tablet'
                       ? global.commonTwocol
-                      : {width: '100%'},
+                      : { width: '100%' },
                     global.flexRowsec,
-                    {marginTop: findDevicetype.isTab === 'Tablet' ? null : 10},
+                    { marginTop: findDevicetype.isTab === 'Tablet' ? null : 10 },
                   ]}>
                   <View
                     style={[
                       // width: '60%'
                       findDevicetype.isTab === 'Tablet'
-                        ? {width: '60%'}
-                        : {width: '36%'},
+                        ? { width: '60%' }
+                        : { width: '36%' },
                     ]}>
                     <Text
                       style={[
@@ -486,16 +504,16 @@ export default function Shop({navigation}) {
                       global.inputBox,
                       findDevicetype.isTab === 'Tablet'
                         ? {
-                            width: '40%',
-                            flexDirection: 'row',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: 35,
-                          }
+                          width: '40%',
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          height: 35,
+                        }
                         : {
-                            width: '64%',
-                            height: 35,
-                          },
+                          width: '64%',
+                          height: 35,
+                        },
 
                       // {
                       //   width: '40%',
@@ -507,10 +525,10 @@ export default function Shop({navigation}) {
                       // },
                     ]}>
                     <TextInput
-                      style={[global.input, {textAlign: 'right', height: 45}]}
-                      onChangeText={onChangeText}
+                      style={[global.input, { textAlign: 'right', height: 45 }]}
+                      onChangeText={onChangeTextPos}
                       placeholderTextColor="#D1D1D1"
-                      value={text}
+                      value={textTextPos}
                     />
                   </View>
                 </View>
@@ -520,26 +538,26 @@ export default function Shop({navigation}) {
                 style={[
                   findDevicetype.isTab === 'Tablet'
                     ? global.commonFlexrow_bt
-                    : {flexDirection: 'column'},
+                    : { flexDirection: 'column' },
                   global.flexLine,
                 ]}>
                 <View
                   style={[
                     findDevicetype.isTab === 'Tablet'
                       ? global.commonTwocol
-                      : {width: '100%'},
+                      : { width: '100%' },
                     global.flexRowsec,
                   ]}>
-                  <View style={{width: '60%'}}>
+                  <View style={{ width: '60%' }}>
                     <Text style={global.commonTextblueH1}>Opening Time</Text>
                   </View>
 
-                  <View style={[global.inputBox, {width: '40%', height: 35}]}>
+                  <View style={[global.inputBox, { width: '40%', height: 35 }]}>
                     <TextInput
-                      style={[global.input, {textAlign: 'right', height: 45}]}
-                      onChangeText={onChangeText}
+                      style={[global.input, { textAlign: 'right', height: 45 }]}
+                      onChangeText={onChangeTextOpenTime}
                       placeholderTextColor="#D1D1D1"
-                      value={text}
+                      value={textOpenTime}
                     />
                   </View>
                 </View>
@@ -548,11 +566,11 @@ export default function Shop({navigation}) {
                   style={[
                     findDevicetype.isTab === 'Tablet'
                       ? global.commonTwocol
-                      : {width: '100%'},
+                      : { width: '100%' },
                     global.flexRowsec,
-                    {marginTop: findDevicetype.isTab === 'Tablet' ? null : 10},
+                    { marginTop: findDevicetype.isTab === 'Tablet' ? null : 10 },
                   ]}>
-                  <View style={{width: '60%'}}>
+                  <View style={{ width: '60%' }}>
                     <Text
                       style={[
                         global.commonTextblueH1,
@@ -568,12 +586,12 @@ export default function Shop({navigation}) {
                     </Text>
                   </View>
 
-                  <View style={[global.inputBox, {width: '40%', height: 35}]}>
+                  <View style={[global.inputBox, { width: '40%', height: 35 }]}>
                     <TextInput
-                      style={[global.input, {textAlign: 'right', height: 45}]}
-                      onChangeText={onChangeText}
+                      style={[global.input, { textAlign: 'right', height: 45 }]}
+                      onChangeText={onChangeTextCloseTime}
                       placeholderTextColor="#D1D1D1"
-                      value={text}
+                      value={textCloseTime}
                     />
                   </View>
                 </View>
@@ -582,32 +600,32 @@ export default function Shop({navigation}) {
           </View>
 
           <View
-            style={[global.commonWhitebg, {paddingVertical: 0, marginTop: 22}]}>
+            style={[global.commonWhitebg, { paddingVertical: 0, marginTop: 22 }]}>
             <View
               style={[
                 findDevicetype.isTab === 'Tablet'
                   ? global.commonFlexrow_bt
-                  : {flexDirection: 'column'},
+                  : { flexDirection: 'column' },
                 global.flexLine,
               ]}>
               <View
                 style={[
                   findDevicetype.isTab === 'Tablet'
                     ? global.commonTwocol
-                    : {width: '100%'},
+                    : { width: '100%' },
                   global.flexRowsec,
                 ]}>
-                <View style={{width: '60%'}}>
+                <View style={{ width: '60%' }}>
                   <Text style={global.commonTextblueH1}>Tax</Text>
                 </View>
 
-                <View style={[global.inputBox, {width: '40%', height: 35}]}>
+                <View style={[global.inputBox, { width: '40%', height: 35 }]}>
                   <TextInput
-                    style={[global.input, {textAlign: 'right', height: 45}]}
-                    onChangeText={onChangeText}
+                    style={[global.input, { textAlign: 'right', height: 45 }]}
+                    onChangeText={onChangeTextTax}
                     placeholder="0%"
                     placeholderTextColor="#D1D1D1"
-                    value={text}
+                    value={textTax}
                   />
                 </View>
               </View>
@@ -616,11 +634,11 @@ export default function Shop({navigation}) {
                 style={[
                   findDevicetype.isTab === 'Tablet'
                     ? global.commonTwocol
-                    : {width: '100%'},
+                    : { width: '100%' },
                   global.flexRowsec,
-                  {marginTop: findDevicetype.isTab === 'Tablet' ? null : 10},
+                  { marginTop: findDevicetype.isTab === 'Tablet' ? null : 10 },
                 ]}>
-                <View style={[{width: '60%'}]}>
+                <View style={[{ width: '60%' }]}>
                   <Text
                     style={[
                       global.commonTextblueH1,
@@ -643,11 +661,11 @@ export default function Shop({navigation}) {
                     },
                   ]}>
                   <TextInput
-                    style={[global.input, {textAlign: 'right', height: 45}]}
-                    onChangeText={onChangeText}
+                    style={[global.input, { textAlign: 'right', height: 45 }]}
+                    onChangeText={onChangeTextServiceCharge}
                     placeholder="0%"
                     placeholderTextColor="#D1D1D1"
-                    value={text}
+                    value={textServiceCharge}
                   />
                 </View>
               </View>
@@ -657,7 +675,7 @@ export default function Shop({navigation}) {
               style={[
                 global.flexLine,
                 global.commonFlexrow_bt,
-                {paddingVertical: 15, justifyContent: 'space-between'},
+                { paddingVertical: 15, justifyContent: 'space-between' },
               ]}>
               <Text style={global.commonTextblueH1}>Rounding</Text>
 
@@ -672,7 +690,7 @@ export default function Shop({navigation}) {
           </View>
 
           <View
-            style={[global.commonWhitebg, {paddingVertical: 0, marginTop: 22}]}>
+            style={[global.commonWhitebg, { paddingVertical: 0, marginTop: 22 }]}>
             <View style={[global.commonFlexrow_ct, global.flexLine]}>
               <Text style={global.commonTextblueH1}>Address Line 1</Text>
 
@@ -720,7 +738,7 @@ export default function Shop({navigation}) {
                 <TextInput
                   style={[
                     global.input,
-                    {width: '100%', height: 45, textAlign: 'right'},
+                    { width: '100%', height: 45, textAlign: 'right' },
                   ]}
                   onChangeText={setAddress}
                   placeholderTextColor="#D1D1D1"
@@ -750,11 +768,11 @@ export default function Shop({navigation}) {
                 <TextInput
                   style={[
                     global.input,
-                    {width: '100%', height: 45, textAlign: 'right'},
+                    { width: '100%', height: 45, textAlign: 'right' },
                   ]}
-                  onChangeText={onChangeText}
+                  onChangeText={onChangeTextAddr2}
                   placeholderTextColor="#D1D1D1"
-                  value={text}
+                  value={textAddr2}
                 />
               </View>
             </View>
@@ -780,7 +798,7 @@ export default function Shop({navigation}) {
                 <TextInput
                   style={[
                     global.input,
-                    {width: '100%', textAlign: 'right', height: 45},
+                    { width: '100%', textAlign: 'right', height: 45 },
                   ]}
                   onChangeText={setTelephone}
                   placeholderTextColor="#D1D1D1"
@@ -793,7 +811,7 @@ export default function Shop({navigation}) {
         </ScrollView>
 
         {visible ? (
-          <View style={{padding: 11}}>
+          <View style={{ padding: 11 }}>
             <TouchableOpacity
               style={global.commonButton}
               onPress={() => onSave()}>

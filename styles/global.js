@@ -40,6 +40,12 @@ export const global = StyleSheet.create({
     color: '#000',
     fontFamily: 'Helvetica',
   },
+  commonTextblackbBold: {
+    fontSize: 15,
+    color: '#000',
+    fontFamily: 'Helvetica',
+    fontWeight:'bold'
+  },
   tabTextblack: {
     fontSize: 13,
     color: '#000',
@@ -65,6 +71,12 @@ export const global = StyleSheet.create({
   commonTextwhiteH1: {
     fontSize: 16,
     color: '#fff',
+    fontFamily: 'Helvetica',
+  },
+
+  commonTextwhiteH1Green: {
+    fontSize: 16,
+    color: '#90EE90',
     fontFamily: 'Helvetica',
   },
 
@@ -162,6 +174,7 @@ export const global = StyleSheet.create({
   input: {
     width: '100%',
     fontSize: 17,
+    color:'#000'
   },
 
   commonFlexrow_bt: {flexDirection: 'row'},
@@ -613,6 +626,7 @@ export const global = StyleSheet.create({
   checkBoxtick: {width: windowWidth > 480 ? 18 : 13},
 
   drawerMenuicon: {width: 30, height: 30, tintColor: '#fff'},
+  drawerMenuiconGreen: {width: 30, height: 30, tintColor: '#90EE90'},
 
   draweruserlogo: {
     width: 60,
